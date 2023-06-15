@@ -5,9 +5,10 @@ function listen(io) {
   const pongNamespace = io.of('/pong');
   pongNamespace.on('connection', (socket) => {
     console.log('a user connected', socket.id);
+    let room = 'room' + Math.floor(readyPlayerCount/2)
   
     socket.on('ready', () => {
-      let room = 'room' + Math.floor(readyPlayerCount/2)
+
       socket.join(room);
       readyPlayerCount++;
 
